@@ -1,0 +1,116 @@
+
+Terms:
+
+	Accronyms:
+		CBG
+		ROM
+		MBC
+
+Cartridge:
+	ROM Header:
+	Memory map:
+		0x0000-0x3FFF:
+			bank 00 - Directly in cartridge, fixed bank
+
+		0x4000-0x7FFF:
+			MBCs (Memory Bank Controller):
+				- Due to limited space in the 16 bit addressing bus,
+					the controller switches in bank 01-NN
+				- The type of MBC is specified at 0x0147 in the ROM header
+				- Current bank is decided by a register within the ROM
+					it is written to at a specific memory address, that cannot be read out
+		
+		0x8000-0x9FFF:
+			VRAM:
+		
+		0xA000-0xBFFF:
+			External RAM:
+
+		0xC000-0xCFFF:
+			WRAM bank 00
+
+		0xD000-0xDFFF:
+			WRAM bank 01-07 if in CBG mode
+		
+CPU:
+	Registers:
+		Size: 16-bit
+			- Can occasionally be accessed as 2 separate 8-bit registers
+		AF:
+			Hi: A
+			Lo: -
+			Accumulator & Flags
+		BC:
+			Hi: B
+			Lo: C
+		DE:
+			Hi: D
+			Lo: E
+		HL:
+			Hi: H
+			Lo: L
+		SP:
+			Stack Pointer
+		PC:
+			Program Counter/Pointer
+		
+		F:
+			- Flags register
+			- Lower half of AF 16-bit register
+			flags:
+				bit 7/z:
+					zero flag:
+						- Set if the result of the operation is zero
+						- Used for conditional jumps
+
+				bit 6/n:
+					subtraction flag:
+						- Set if last operation was subtraction
+
+				bit 5/h:
+					half carry flag:
+						- Set for carry of lower 4 bits of result
+						???
+
+				bit 4/c:
+					carry flag:
+						- Set if:
+							- 8-bit addition > 0xFF
+							- 16-bit addition > 0xFFFF
+							- Subtraction/comparision < 0x00
+							- Shift/rotate shifts out a "1" bit
+
+	Instructions:
+		- Variable-length instruction set
+		- First byte of instruction is the opcode
+		examples:
+			opcode 0x00:
+				name: NOP
+				- no args
+				- no flags affected
+				- does nothing
+
+			opcode 0xC3:
+				name: JP
+				args: a16
+				- no flags affected
+				- jumps to address (set program counter?)
+
+
+memory bus:
+	- connects all different components of the gameboy
+	- diverts read and writes to the right component depending
+		on the memory address
+
+
+Gameboy {
+	CPU
+	Work RAM
+	VRAM
+}
+
+Cartridge {
+	header
+	ROM
+	External RAM
+}
