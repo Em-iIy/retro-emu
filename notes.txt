@@ -114,3 +114,19 @@ Cartridge {
 	ROM
 	External RAM
 }
+
+Useful Docs {
+	Instructions {
+		https://meganesu.github.io/generate-gb-opcodes/
+		https://gbdev.io/gb-opcodes/optables/
+		https://rgbds.gbdev.io/docs/v1.0.1/gbz80.7
+	}
+	General {
+		https://gbdev.io/resources.html#documentation
+		https://gbdev.io/pandocs/
+	}
+	Implementations {
+		https://cturt.github.io/cinoop.html
+		https://github.com/rvan-mee/play-man/tree/feature/graphics
+	}
+}
