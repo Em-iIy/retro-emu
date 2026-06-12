@@ -7,26 +7,24 @@ Created on: 16/04/2026
 #include <vector>
 #include <cstdint>
 #include <stdexcept>
-#include <cerrno>
-#include <cstring>
-#include <unistd.h>
-#include <fcntl.h>
+
+#include <fstream>
 
 std::vector<uint8_t>	readFile(const std::string &fileName)
 {
 	std::vector<uint8_t>	ret;
 
-	int	fd = open(fileName.c_str(), O_RDONLY);
-	if (fd < 0)
-		throw std::runtime_error(std::strerror(errno));
+	std::ifstream stream(fileName, std::ios::binary | std::ios::ate);
+	if (!stream.is_open())
+		throw std::runtime_error("Failed to open");
 
-	uint64_t	fileSize = lseek(fd, 0, SEEK_END);
+	uint64_t	fileSize = stream.tellg();
 	ret.resize(fileSize);
-	lseek(fd, 0, SEEK_SET);
 
-	uint64_t	bytesRead = read(fd, ret.data(), fileSize);
-	if (bytesRead < 0)
-		throw std::runtime_error(std::strerror(errno));
+	stream.seekg(0, std::ios::beg);
+
+	if (!stream.read(reinterpret_cast<char *>(ret.data()), fileSize))
+		throw std::runtime_error("Failed to read");
 
 	return (ret);
 }
