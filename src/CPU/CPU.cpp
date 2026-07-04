@@ -14,6 +14,7 @@ CPU::CPU(MemoryBus &bus): _bus(bus)
 	initExtendedInstructionTable();
 	flushRegisters();
 	PC.setValue(0x100);
+	SP.setValue(0xFFFE);
 }
 
 CPU::~CPU()
@@ -140,7 +141,7 @@ void	CPU::logInstructionData()
 {
 	OpCodes code = static_cast<OpCodes>(currentInstructionData.front());
 	std::cout << code << "\t";
-	for (uint i = 1; i < currentInstructionData.size(); i++)
+	for (uint8_t i = 1; i < currentInstructionData.size(); i++)
 		std::cout << "(" << std::hex << currentInstructionData.at(i) << ") ";
 	std::cout << std::endl;
 }

@@ -7,7 +7,6 @@ Created on: 30/03/2026
 #include "Bank.hpp"
 
 #include <fcntl.h>
-#include <unistd.h>
 #include <stdexcept>
 #include <cstring>
 #include <cerrno>
