@@ -5,14 +5,14 @@ Created on: 04/07/2026
 
 #include "CPU/CPU.hpp"
 
-uint8_t		CPU::PUSH_R16(uint16_t &reg)
+uint8_t		CPU::POP_R16(uint16_t &reg)
 {
 	Register	&reg16 = reinterpret_cast<Register &>(reg);
 	uint16_t	spValue = SP.getValue();
 
-	_bus.writeByte(spValue - 1, reg16.getHi());
-	_bus.writeByte(spValue - 2, reg16.getLo());
+	reg16.setLo(_bus.readByte(spValue));
+	reg16.setHi(_bus.readByte(spValue + 1));
 
-	SP.setValue(spValue - 2);
+	SP.setValue(spValue + 2);
 	return (1);
 }

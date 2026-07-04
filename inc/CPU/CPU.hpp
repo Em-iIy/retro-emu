@@ -228,6 +228,9 @@ class CPU {
 		uint8_t		COMPARE_A_IM8(); // ex: CP d8
 		uint8_t		COMPARE_A_PR16(uint16_t &pRb); // ex: CP (HL)
 
+		/*	POP	*/
+		uint8_t		POP_R16(uint16_t &reg); // ex: POP BC
+
 		/*	PUSH	*/
 		uint8_t		PUSH_R16(uint16_t &reg); // ex: PUSH BC
 
