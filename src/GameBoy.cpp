@@ -5,7 +5,7 @@ Created on: 28/04/2026
 
 #include "GameBoy.hpp"
 
-GameBoy::GameBoy(): _cpu(_bus), _bus(&_cpu)
+GameBoy::GameBoy(): _cpu(_bus), _bus(&_cpu, &_wram)
 {
 }
 

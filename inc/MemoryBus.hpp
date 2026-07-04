@@ -10,11 +10,12 @@ Created on: 13/04/2026
 #include <memory>
 
 class CPU;
+class WRAM;
 
 class MemoryBus: public AMemoryAccessor {
 	public:
 		MemoryBus();
-		MemoryBus(CPU *cpu);
+		MemoryBus(CPU *cpu, WRAM *wram);
 		~MemoryBus();
 	
 		uint8_t	readByte(uint16_t address);
@@ -26,6 +27,6 @@ class MemoryBus: public AMemoryAccessor {
 		ROM		*_rom;
 		// RAM	*_vram; // Video RAM
 		// RAM	*_eram; // External RAM
-		// RAM	*_wram; // Work RAM
+		WRAM	*_wram; // Work RAM
 		CPU		*_cpu;
 };

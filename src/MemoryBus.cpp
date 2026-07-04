@@ -4,15 +4,16 @@ Created on: 28/04/2026
 */
 
 #include "MemoryBus.hpp"
+#include "WRAM.hpp"
 #include "CPU/CPU.hpp"
 
 
-MemoryBus::MemoryBus(): AMemoryAccessor(0x0000, 0xFFFF), _rom(nullptr), _cpu(nullptr)
+MemoryBus::MemoryBus(): AMemoryAccessor(0x0000, 0xFFFF), _rom(nullptr), _wram(nullptr), _cpu(nullptr)
 {
 	_cpu = nullptr;
 }
 
-MemoryBus::MemoryBus(CPU *cpu): AMemoryAccessor(0x0000, 0xFFFF), _rom(nullptr), _cpu(cpu)
+MemoryBus::MemoryBus(CPU *cpu, WRAM *wram): AMemoryAccessor(0x0000, 0xFFFF), _rom(nullptr), _wram(wram), _cpu(cpu)
 {
 }
 
@@ -31,6 +32,8 @@ void	MemoryBus::writeByte(uint16_t address, uint8_t value)
 {
 	if (_rom->inRange(address))
 		_rom->writeByte(address, value);
+	if (_wram->inRange(address))
+		_wram->writeByte(address, value);
 	if (address == 0xFFFF)
 		_cpu->setIME(value);
 }

@@ -12,7 +12,7 @@ Created on: 28/04/2026
 #include <vector>
 
 #define WRAM_BANK_SIZE 0x1000
-#define WRAM_START_ADDRESS 0x0000
+#define WRAM_START_ADDRESS 0xC000
 
 using WRAMBank = Bank<WRAM_BANK_SIZE>;
 
