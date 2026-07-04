@@ -228,6 +228,14 @@ class CPU {
 		uint8_t		COMPARE_A_IM8(); // ex: CP d8
 		uint8_t		COMPARE_A_PR16(uint16_t &pRb); // ex: CP (HL)
 
+		/*	PUSH	*/
+		uint8_t		PUSH_R16(uint16_t &reg); // ex: PUSH BC
+
+		/*	CALL	*/
+		uint8_t		CALL_IM16(); // ex: CALL a16
+		uint8_t		CALL_FLAG_IM16(Flag flag); // ex: CALL Z, a16
+		uint8_t		CALL_NFLAG_IM16(Flag flag); // ex: CALL NZ, a16
+
 		/*	MISC	*/
 		uint8_t		CPL(); // ex: CPL
 };

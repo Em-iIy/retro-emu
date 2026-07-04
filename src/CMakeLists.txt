@@ -11,12 +11,14 @@ add_executable(gb-EM-u
 	CPU/Implementations/ADD.cpp
 	CPU/Implementations/ADDC.cpp
 	CPU/Implementations/AND.cpp
+	CPU/Implementations/CALL.cpp
 	CPU/Implementations/COMPARE.cpp
 	CPU/Implementations/DEC.cpp
 	CPU/Implementations/INC.cpp
 	CPU/Implementations/JUMP.cpp
 	CPU/Implementations/LOAD.cpp
 	CPU/Implementations/OR.cpp
+	CPU/Implementations/PUSH.cpp
 	CPU/Implementations/SUB.cpp
 	CPU/Implementations/SUBC.cpp
 	CPU/Implementations/XOR.cpp
@@ -42,7 +44,4 @@ target_compile_features(gb-EM-u
 target_compile_options(gb-EM-u
 	PRIVATE
 	-g
-	-Wall
-	-Wextra
-	-Werror
 )
