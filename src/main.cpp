@@ -11,8 +11,14 @@ int	main(int argc, char **argv)
 		return (1);
 	GameBoy						gameBoy;
 
-
-	std::shared_ptr<Cartridge>	cart = std::make_shared<Cartridge>(argv[1]);
-	gameBoy.loadCartridge(cart);
+	try
+	{
+		std::shared_ptr<Cartridge>	cart = std::make_shared<Cartridge>(argv[1]);
+		gameBoy.loadCartridge(cart);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return (0);
 }
