@@ -171,6 +171,7 @@ class CPU {
 
 		/*	JUMP	*/
 		uint8_t		JUMP_IM16(); // ex: JP a16
+		uint8_t		JUMP_R16(uint16_t &reg); // ex: JP HL
 			/*	JUMP RELATIVE	*/
 		uint8_t		JUMP_RELATIVE_IM8(); // ex: JR s8
 		uint8_t		JUMP_RELATIVE_FLAG_IM8(Flag flag); // ex: JR Z, s8
@@ -233,6 +234,12 @@ class CPU {
 
 		/*	PUSH	*/
 		uint8_t		PUSH_R16(uint16_t &reg); // ex: PUSH BC
+
+		/*	RET	*/
+		uint8_t		RET(); // ex: RET
+		uint8_t		RETI(); // ex: RETI
+		uint8_t		RET_FLAG(Flag flag); // ex: RET Z
+		uint8_t		RET_NFLAG(Flag flag); // ex: RET NZ
 
 		/*	CALL	*/
 		uint8_t		CALL_IM16(); // ex: CALL a16

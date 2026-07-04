@@ -11,6 +11,12 @@ uint8_t	CPU::JUMP_IM16()
 	return (1);
 }
 
+uint8_t	CPU::JUMP_R16(uint16_t &reg)
+{
+	PC.setValue(reg);
+	return (1);
+}
+
 uint8_t		CPU::JUMP_RELATIVE_IM8()
 {
 	PC.setValue(PC.getValue() + fetchImmediateByte());
