@@ -7,6 +7,7 @@ add_executable(gb-EM-u
 	CPU/Register.cpp
 	CPU/Instruction.cpp
 	CPU/InstructionTable.cpp
+	CPU/ExtendedInstructionTable.cpp
 
 	CPU/Implementations/ADD.cpp
 	CPU/Implementations/ADDC.cpp

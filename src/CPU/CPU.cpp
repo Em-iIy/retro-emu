@@ -28,8 +28,8 @@ bool	CPU::cycle()
 	uint16_t	pcState = PC.getValue();
 	Instruction	currentInstruction = getInstruction();
 	std::cout << std::hex << pcState << " -> ";
-	auto instructionCB = table.at(static_cast<uint8_t>(currentInstruction.opCode));
-	uint8_t	result = instructionCB();
+
+	uint8_t	result = executeInstruction(currentInstruction);
 
 	logInstructionData();
 
@@ -135,6 +135,22 @@ Instruction	CPU::getInstruction()
 	if (ret.checkExtended())
 		ret.setExtension(static_cast<OpCodesExt>(fetchImmediateByte()));
 	return (ret);
+}
+
+uint8_t		CPU::executeInstruction(Instruction &instruction)
+{
+	InstructionCallback	callback;
+
+	switch (instruction.opCode)
+	{
+	case OpCodes::EXTENDED:
+		callback = extendedTable.at(static_cast<uint8_t>(instruction.ext));
+		break;
+	default:
+		callback = table.at(static_cast<uint8_t>(instruction.opCode));
+		break;
+	}
+	return (callback());
 }
 
 void	CPU::logInstructionData()

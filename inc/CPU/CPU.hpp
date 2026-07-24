@@ -104,6 +104,7 @@ class CPU {
 		uint16_t	fetchImmediate2Bytes();
 
 		Instruction	getInstruction();
+		uint8_t		executeInstruction(Instruction &instruction);
 		void		logInstructionData();
 
 		void		setFlag(Flag flag, bool value);
