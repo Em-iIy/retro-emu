@@ -299,9 +299,3 @@ void		CPU::initInstructionTable()
 	setCallback(table, OpCodes::CP_d8, std::bind(&CPU::COMPARE_A_IM8, this));
 	// setCallback(table, OpCodes::RST_7, std::bind(&CPU::notImplemented, this));
 }
-
-void		CPU::initExtendedInstructionTable()
-{
-	InstructionCallback	notImpl = std::bind(&CPU::notImplemented, this);
-	extendedTable.fill(notImpl);
-}

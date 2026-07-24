@@ -133,7 +133,7 @@ Instruction	CPU::getInstruction()
 {
 	Instruction ret(static_cast<OpCodes>(fetchImmediateByte()));
 	if (ret.checkExtended())
-		ret.setExtension(fetchImmediateByte());
+		ret.setExtension(static_cast<OpCodesExt>(fetchImmediateByte()));
 	return (ret);
 }
 

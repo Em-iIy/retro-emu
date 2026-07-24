@@ -7,6 +7,7 @@ Created on: 30/04/2026
 
 #include <cstdint>
 #include "enums/OpCodes.hpp"
+#include "enums/OpCodesExt.hpp"
 
 class Instruction
 {
@@ -16,8 +17,8 @@ class Instruction
 		~Instruction();
 
 		bool	checkExtended();
-		void	setExtension(uint8_t extension);
+		void	setExtension(OpCodesExt extension);
 
 		OpCodes	opCode;
-		uint8_t	ext;
+		OpCodesExt	ext;
 };

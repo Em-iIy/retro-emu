@@ -13,7 +13,6 @@ Created on: 09/04/2026
 #include <functional>
 #include <array>
 
-
 constexpr bool	checkCarry(uint16_t a, uint16_t b, uint8_t bit)
 {
 	return (((a & b) | ((a | b) & ~(a + b))) & (1 << bit));
