@@ -247,15 +247,25 @@ class CPU {
 		uint8_t		CALL_NFLAG_IM16(Flag flag); // ex: CALL NZ, a16
 
 		/*	ROTATE	*/
-		uint8_t		RLC_R8(uint8_t &rb); // ex: RLC B
-		uint8_t		RLC_PR16(uint16_t &pRb); // ex: RLC (HL)
-		uint8_t		RL_R8(uint8_t &rb); // ex: RL B
-		uint8_t		RL_PR16(uint16_t &pRb); // ex: RL (HL)
+		uint8_t		RLC_R8(uint8_t &ra); // ex: RLC B
+		uint8_t		RLC_PR16(uint16_t &pRa); // ex: RLC (HL)
+		uint8_t		RL_R8(uint8_t &ra); // ex: RL B
+		uint8_t		RL_PR16(uint16_t &pRa); // ex: RL (HL)
 
-		uint8_t		RRC_R8(uint8_t &rb); // ex: RRC B
-		uint8_t		RRC_PR16(uint16_t &pRb); // ex: RRC (HL)
-		uint8_t		RR_R8(uint8_t &rb); // ex: RR B
-		uint8_t		RR_PR16(uint16_t &pRb); // ex: RR (HL)
+		uint8_t		RRC_R8(uint8_t &ra); // ex: RRC B
+		uint8_t		RRC_PR16(uint16_t &pRa); // ex: RRC (HL)
+		uint8_t		RR_R8(uint8_t &ra); // ex: RR B
+		uint8_t		RR_PR16(uint16_t &pRa); // ex: RR (HL)
+
+		/*	SHIFT	*/
+		uint8_t		SLA_R8(uint8_t &ra); // ex: SLA B
+		uint8_t		SLA_PR16(uint16_t &pRa); // ex: SLA (HL)
+
+		uint8_t		SRA_R8(uint8_t &ra); // ex: SRA B
+		uint8_t		SRA_PR16(uint16_t &pRa); // ex: SRA (HL)
+
+		uint8_t		SRL_R8(uint8_t &ra); // ex: SRL B
+		uint8_t		SRL_PR16(uint16_t &pRa); // ex: SRL (HL)
 
 		/*	MISC	*/
 		uint8_t		CPL(); // ex: CPL

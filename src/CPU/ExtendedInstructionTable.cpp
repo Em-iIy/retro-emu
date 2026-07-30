@@ -68,23 +68,23 @@ void		CPU::initExtendedInstructionTable()
 	setCallback(extendedTable, OpCodesExt::RR_HL, std::bind(&CPU::RR_PR16, this, REG_HL));
 	setCallback(extendedTable, OpCodesExt::RR_A, std::bind(&CPU::RR_R8, this, REG_A));
 
-	setCallback(extendedTable, OpCodesExt::SLA_B, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SLA_C, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SLA_D, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SLA_E, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SLA_H, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SLA_L, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SLA_HL, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SLA_A, std::bind(&CPU::notImplemented, this));
+	setCallback(extendedTable, OpCodesExt::SLA_B, std::bind(&CPU::SLA_R8, this, REG_B));
+	setCallback(extendedTable, OpCodesExt::SLA_C, std::bind(&CPU::SLA_R8, this, REG_C));
+	setCallback(extendedTable, OpCodesExt::SLA_D, std::bind(&CPU::SLA_R8, this, REG_D));
+	setCallback(extendedTable, OpCodesExt::SLA_E, std::bind(&CPU::SLA_R8, this, REG_E));
+	setCallback(extendedTable, OpCodesExt::SLA_H, std::bind(&CPU::SLA_R8, this, REG_H));
+	setCallback(extendedTable, OpCodesExt::SLA_L, std::bind(&CPU::SLA_R8, this, REG_L));
+	setCallback(extendedTable, OpCodesExt::SLA_HL, std::bind(&CPU::SLA_PR16, this, REG_HL));
+	setCallback(extendedTable, OpCodesExt::SLA_A, std::bind(&CPU::SLA_R8, this, REG_A));
 
-	setCallback(extendedTable, OpCodesExt::SRA_B, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRA_C, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRA_D, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRA_E, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRA_H, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRA_L, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRA_HL, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRA_A, std::bind(&CPU::notImplemented, this));
+	setCallback(extendedTable, OpCodesExt::SRA_B, std::bind(&CPU::SRA_R8, this, REG_B));
+	setCallback(extendedTable, OpCodesExt::SRA_C, std::bind(&CPU::SRA_R8, this, REG_C));
+	setCallback(extendedTable, OpCodesExt::SRA_D, std::bind(&CPU::SRA_R8, this, REG_D));
+	setCallback(extendedTable, OpCodesExt::SRA_E, std::bind(&CPU::SRA_R8, this, REG_E));
+	setCallback(extendedTable, OpCodesExt::SRA_H, std::bind(&CPU::SRA_R8, this, REG_H));
+	setCallback(extendedTable, OpCodesExt::SRA_L, std::bind(&CPU::SRA_R8, this, REG_L));
+	setCallback(extendedTable, OpCodesExt::SRA_HL, std::bind(&CPU::SRA_PR16, this, REG_HL));
+	setCallback(extendedTable, OpCodesExt::SRA_A, std::bind(&CPU::SRA_R8, this, REG_A));
 
 	setCallback(extendedTable, OpCodesExt::SWAP_B, std::bind(&CPU::notImplemented, this));
 	setCallback(extendedTable, OpCodesExt::SWAP_C, std::bind(&CPU::notImplemented, this));
@@ -95,14 +95,14 @@ void		CPU::initExtendedInstructionTable()
 	setCallback(extendedTable, OpCodesExt::SWAP_HL, std::bind(&CPU::notImplemented, this));
 	setCallback(extendedTable, OpCodesExt::SWAP_A, std::bind(&CPU::notImplemented, this));
 
-	setCallback(extendedTable, OpCodesExt::SRL_B, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRL_C, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRL_D, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRL_E, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRL_H, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRL_L, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRL_HL, std::bind(&CPU::notImplemented, this));
-	setCallback(extendedTable, OpCodesExt::SRL_A, std::bind(&CPU::notImplemented, this));
+	setCallback(extendedTable, OpCodesExt::SRL_B, std::bind(&CPU::SRL_R8, this, REG_B));
+	setCallback(extendedTable, OpCodesExt::SRL_C, std::bind(&CPU::SRL_R8, this, REG_C));
+	setCallback(extendedTable, OpCodesExt::SRL_D, std::bind(&CPU::SRL_R8, this, REG_D));
+	setCallback(extendedTable, OpCodesExt::SRL_E, std::bind(&CPU::SRL_R8, this, REG_E));
+	setCallback(extendedTable, OpCodesExt::SRL_H, std::bind(&CPU::SRL_R8, this, REG_H));
+	setCallback(extendedTable, OpCodesExt::SRL_L, std::bind(&CPU::SRL_R8, this, REG_L));
+	setCallback(extendedTable, OpCodesExt::SRL_HL, std::bind(&CPU::SRL_PR16, this, REG_HL));
+	setCallback(extendedTable, OpCodesExt::SRL_A, std::bind(&CPU::SRL_R8, this, REG_A));
 
 	setCallback(extendedTable, OpCodesExt::BIT_0_B, std::bind(&CPU::notImplemented, this));
 	setCallback(extendedTable, OpCodesExt::BIT_0_C, std::bind(&CPU::notImplemented, this));
