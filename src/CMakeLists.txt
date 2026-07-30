@@ -22,6 +22,7 @@ add_executable(gb-EM-u
 	CPU/Implementations/POP.cpp
 	CPU/Implementations/PUSH.cpp
 	CPU/Implementations/RET.cpp
+	CPU/Implementations/ROTATE.cpp
 	CPU/Implementations/SUB.cpp
 	CPU/Implementations/SUBC.cpp
 	CPU/Implementations/XOR.cpp

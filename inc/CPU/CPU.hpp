@@ -246,6 +246,17 @@ class CPU {
 		uint8_t		CALL_FLAG_IM16(Flag flag); // ex: CALL Z, a16
 		uint8_t		CALL_NFLAG_IM16(Flag flag); // ex: CALL NZ, a16
 
+		/*	ROTATE	*/
+		uint8_t		RLC_R8(uint8_t &rb); // ex: RLC B
+		uint8_t		RLC_PR16(uint16_t &pRb); // ex: RLC (HL)
+		uint8_t		RL_R8(uint8_t &rb); // ex: RL B
+		uint8_t		RL_PR16(uint16_t &pRb); // ex: RL (HL)
+
+		uint8_t		RRC_R8(uint8_t &rb); // ex: RRC B
+		uint8_t		RRC_PR16(uint16_t &pRb); // ex: RRC (HL)
+		uint8_t		RR_R8(uint8_t &rb); // ex: RR B
+		uint8_t		RR_PR16(uint16_t &pRb); // ex: RR (HL)
+
 		/*	MISC	*/
 		uint8_t		CPL(); // ex: CPL
 };
