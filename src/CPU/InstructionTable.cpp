@@ -38,7 +38,7 @@ void		CPU::initInstructionTable()
 	setCallback(table, OpCodes::INC_B, std::bind(&CPU::INC_R8, this, REG_B));
 	setCallback(table, OpCodes::DEC_B, std::bind(&CPU::DEC_R8, this, REG_B));
 	setCallback(table, OpCodes::LD_B_d8, std::bind(&CPU::LOAD_R8_IM8, this, REG_B));
-	// setCallback(table, OpCodes::RLCA, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RLCA, std::bind(&CPU::RLCA, this));
 	setCallback(table, OpCodes::LD_DREF_a16_SP, std::bind(&CPU::LOAD_PIM16_R16, this, REG_SP));
 	setCallback(table, OpCodes::ADD_HL_BC, std::bind(&CPU::ADD_R16_R16, this, REG_HL, REG_BC));
 	setCallback(table, OpCodes::LD_A_DREF_BC, std::bind(&CPU::LOAD_R8_PR16, this, REG_A, REG_BC));
@@ -46,7 +46,7 @@ void		CPU::initInstructionTable()
 	setCallback(table, OpCodes::INC_C, std::bind(&CPU::INC_R8, this, REG_C));
 	setCallback(table, OpCodes::DEC_C, std::bind(&CPU::DEC_R8, this, REG_C));
 	setCallback(table, OpCodes::LD_C_d8, std::bind(&CPU::LOAD_R8_IM8, this, REG_C));
-	// setCallback(table, OpCodes::RRCA, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RRCA, std::bind(&CPU::RRCA, this));
 
 	// setCallback(table, OpCodes::STOP, std::bind(&CPU::notImplemented, this));
 	setCallback(table, OpCodes::LD_DE_d16, std::bind(&CPU::LOAD_R16_IM16, this, REG_DE));
@@ -55,7 +55,7 @@ void		CPU::initInstructionTable()
 	setCallback(table, OpCodes::INC_D, std::bind(&CPU::INC_R8, this, REG_D));
 	setCallback(table, OpCodes::DEC_D, std::bind(&CPU::DEC_R8, this, REG_D));
 	setCallback(table, OpCodes::LD_D_d8, std::bind(&CPU::LOAD_R8_IM8, this, REG_D));
-	// setCallback(table, OpCodes::RLA, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RLA, std::bind(&CPU::RLA, this));
 	setCallback(table, OpCodes::JR_s8, std::bind(&CPU::JUMP_RELATIVE_IM8, this));
 	setCallback(table, OpCodes::ADD_HL_DE, std::bind(&CPU::ADD_R16_R16, this, REG_HL, REG_DE));
 	setCallback(table, OpCodes::LD_A_DREF_DE, std::bind(&CPU::LOAD_R8_PR16, this, REG_A, REG_DE));
@@ -63,7 +63,7 @@ void		CPU::initInstructionTable()
 	setCallback(table, OpCodes::INC_E, std::bind(&CPU::INC_R8, this, REG_E));
 	setCallback(table, OpCodes::DEC_E, std::bind(&CPU::DEC_R8, this, REG_E));
 	setCallback(table, OpCodes::LD_E_d8, std::bind(&CPU::LOAD_R8_IM8, this, REG_E));
-	// setCallback(table, OpCodes::RRA, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RRA, std::bind(&CPU::RRA, this));
 
 	setCallback(table, OpCodes::JR_NZ_s8, std::bind(&CPU::JUMP_RELATIVE_NFLAG_IM8, this, Flag::Z));
 	setCallback(table, OpCodes::LD_HL_d16, std::bind(&CPU::LOAD_R16_IM16, this, REG_HL));

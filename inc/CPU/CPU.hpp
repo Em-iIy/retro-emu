@@ -247,6 +247,12 @@ class CPU {
 		uint8_t		CALL_NFLAG_IM16(Flag flag); // ex: CALL NZ, a16
 
 		/*	ROTATE	*/
+		uint8_t		RLCA(); // ex: RLCA
+		uint8_t		RLA(); // ex: RLA
+		
+		uint8_t		RRCA(); // ex: RRCA
+		uint8_t		RRA(); // ex: RRA
+
 		uint8_t		RLC_R8(uint8_t &ra); // ex: RLC B
 		uint8_t		RLC_PR16(uint16_t &pRa); // ex: RLC (HL)
 		uint8_t		RL_R8(uint8_t &ra); // ex: RL B
