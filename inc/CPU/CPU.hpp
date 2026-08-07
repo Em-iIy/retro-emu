@@ -43,6 +43,9 @@ class CPU {
 
 		void		setIME(bool val);
 
+		void		printflags();
+		void		printRegisters();
+
 	private:
 		MemoryBus	&_bus;
 
@@ -111,6 +114,7 @@ class CPU {
 		void		setFlag(Flag flag);
 		void		unsetFlag(Flag flag);
 		bool		checkFlag(Flag flag);
+
 
 		uint8_t		notImplemented();
 
@@ -272,6 +276,8 @@ class CPU {
 
 		uint8_t		SRL_R8(uint8_t &ra); // ex: SRL B
 		uint8_t		SRL_PR16(uint16_t &pRa); // ex: SRL (HL)
+
+		uint8_t		RST(uint8_t	idx); // ex: RST 6
 
 		/*	MISC	*/
 		uint8_t		CPL(); // ex: CPL

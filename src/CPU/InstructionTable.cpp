@@ -5,21 +5,21 @@ Created on: 01/06/2026
 
 #include "CPU/CPU.hpp"
 
-#define REG_A CPU::AF.reg8b.hi
-#define REG_F CPU::AF.reg8b.lo
-#define REG_B CPU::BC.reg8b.hi
-#define REG_C CPU::BC.reg8b.lo
-#define REG_D CPU::DE.reg8b.hi
-#define REG_E CPU::DE.reg8b.lo
-#define REG_H CPU::HL.reg8b.hi
-#define REG_L CPU::HL.reg8b.lo
+#define REG_A std::ref(CPU::AF.reg8b.hi)
+#define REG_F std::ref(CPU::AF.reg8b.lo)
+#define REG_B std::ref(CPU::BC.reg8b.hi)
+#define REG_C std::ref(CPU::BC.reg8b.lo)
+#define REG_D std::ref(CPU::DE.reg8b.hi)
+#define REG_E std::ref(CPU::DE.reg8b.lo)
+#define REG_H std::ref(CPU::HL.reg8b.hi)
+#define REG_L std::ref(CPU::HL.reg8b.lo)
 
-#define REG_AF CPU::AF.reg16b
-#define REG_BC CPU::BC.reg16b
-#define REG_DE CPU::DE.reg16b
-#define REG_HL CPU::HL.reg16b
-#define REG_SP CPU::SP.reg16b
-#define REG_PC CPU::PC.reg16b
+#define REG_AF std::ref(CPU::AF.reg16b)
+#define REG_BC std::ref(CPU::BC.reg16b)
+#define REG_DE std::ref(CPU::DE.reg16b)
+#define REG_HL std::ref(CPU::HL.reg16b)
+#define REG_SP std::ref(CPU::SP.reg16b)
+#define REG_PC std::ref(CPU::PC.reg16b)
 
 static void	setCallback(CPU::InstructionTable &table, OpCodes code, CPU::InstructionCallback cb)
 {
@@ -252,7 +252,7 @@ void		CPU::initInstructionTable()
 	setCallback(table, OpCodes::CALL_NZ_a16, std::bind(&CPU::CALL_NFLAG_IM16, this, Flag::Z));
 	setCallback(table, OpCodes::PUSH_BC, std::bind(&CPU::PUSH_R16, this, REG_BC));
 	setCallback(table, OpCodes::ADD_A_d8, std::bind(&CPU::ADD_R8_IM8, this, REG_A));
-	// setCallback(table, OpCodes::RST_0, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RST_0, std::bind(&CPU::RST, this, 0));
 	setCallback(table, OpCodes::RET_Z, std::bind(&CPU::RET_FLAG, this, Flag::Z));
 	setCallback(table, OpCodes::RET, std::bind(&CPU::RET, this));
 	setCallback(table, OpCodes::JP_Z_a16, std::bind(&CPU::JUMP_RELATIVE_FLAG_IM8, this, Flag::Z));
@@ -260,42 +260,42 @@ void		CPU::initInstructionTable()
 	setCallback(table, OpCodes::CALL_Z_a16, std::bind(&CPU::CALL_FLAG_IM16, this, Flag::Z));
 	setCallback(table, OpCodes::CALL_a16, std::bind(&CPU::CALL_IM16, this));
 	setCallback(table, OpCodes::ADC_A_d8, std::bind(&CPU::ADDC_A_IM8, this));
-	// setCallback(table, OpCodes::RST_1, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RST_1, std::bind(&CPU::RST, this, 1));
 	setCallback(table, OpCodes::RET_NC, std::bind(&CPU::RET_NFLAG, this, Flag::C));
 	setCallback(table, OpCodes::POP_DE, std::bind(&CPU::POP_R16, this, REG_DE));
 	setCallback(table, OpCodes::JP_NC_a16, std::bind(&CPU::JUMP_RELATIVE_NFLAG_IM8, this, Flag::C));
 	setCallback(table, OpCodes::CALL_NC_a16, std::bind(&CPU::CALL_NFLAG_IM16, this, Flag::C));
 	setCallback(table, OpCodes::PUSH_DE, std::bind(&CPU::PUSH_R16, this, REG_DE));
 	setCallback(table, OpCodes::SUB_d8, std::bind(&CPU::SUB_A_IM8, this));
-	// setCallback(table, OpCodes::RST_2, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RST_2, std::bind(&CPU::RST, this, 2));
 	setCallback(table, OpCodes::RET_C, std::bind(&CPU::RET_FLAG, this, Flag::C));
 	setCallback(table, OpCodes::RETI, std::bind(&CPU::RETI, this));
 	setCallback(table, OpCodes::JP_C_a16, std::bind(&CPU::JUMP_RELATIVE_FLAG_IM8, this, Flag::C));
 	setCallback(table, OpCodes::CALL_C_a16, std::bind(&CPU::CALL_FLAG_IM16, this, Flag::C));
 	setCallback(table, OpCodes::SBC_A_d8, std::bind(&CPU::SUBC_A_IM8, this));
-	// setCallback(table, OpCodes::RST_3, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RST_3, std::bind(&CPU::RST, this, 3));
 	setCallback(table, OpCodes::LD_DREF_a8_A, std::bind(&CPU::LOAD_PIM8_R8, this, REG_A));
 	setCallback(table, OpCodes::POP_HL, std::bind(&CPU::POP_R16, this, REG_HL));
 	// setCallback(table, OpCodes::LD_DREF_C_A, std::bind(&CPU::notImplemented, this));
 	setCallback(table, OpCodes::PUSH_HL, std::bind(&CPU::PUSH_R16, this, REG_HL));
 	setCallback(table, OpCodes::AND_d8, std::bind(&CPU::AND_A_IM8, this));
-	// setCallback(table, OpCodes::RST_4, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RST_4, std::bind(&CPU::RST, this, 4));
 	// setCallback(table, OpCodes::ADD_SP_s8, std::bind(&CPU::notImplemented, this));
 	setCallback(table, OpCodes::JP_HL, std::bind(&CPU::JUMP_R16, this, REG_HL));
 	setCallback(table, OpCodes::LD_DREF_a16_A, std::bind(&CPU::LOAD_PIM16_R8, this, REG_A));
 	setCallback(table, OpCodes::XOR_d8, std::bind(&CPU::XOR_A_IM8, this));
-	// setCallback(table, OpCodes::RST_5, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RST_5, std::bind(&CPU::RST, this, 5));
 	// setCallback(table, OpCodes::LD_A_DREF_a8, std::bind(&CPU::notImplemented, this));
 	setCallback(table, OpCodes::POP_AF, std::bind(&CPU::POP_R16, this, REG_AF));
 	// setCallback(table, OpCodes::LD_A_DREF_C, std::bind(&CPU::notImplemented, this));
 	setCallback(table, OpCodes::DI, std::bind(&CPU::DI, this));
 	setCallback(table, OpCodes::PUSH_AF, std::bind(&CPU::PUSH_R16, this, REG_AF));
 	setCallback(table, OpCodes::OR_d8, std::bind(&CPU::OR_A_IM8, this));
-	// setCallback(table, OpCodes::RST_6, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RST_6, std::bind(&CPU::RST, this, 6));
 	// setCallback(table, OpCodes::LD_HL_SP_PLUS_s8, std::bind(&CPU::notImplemented, this));
 	setCallback(table, OpCodes::LD_SP_HL, std::bind(&CPU::ADD_R16_R16, this, REG_SP, REG_HL));
 	setCallback(table, OpCodes::LD_A_DREF_a16, std::bind(&CPU::LOAD_R8_PIM16, this, REG_A));
 	setCallback(table, OpCodes::EI, std::bind(&CPU::EI, this));
 	setCallback(table, OpCodes::CP_d8, std::bind(&CPU::COMPARE_A_IM8, this));
-	// setCallback(table, OpCodes::RST_7, std::bind(&CPU::notImplemented, this));
+	setCallback(table, OpCodes::RST_7, std::bind(&CPU::RST, this, 7));
 }

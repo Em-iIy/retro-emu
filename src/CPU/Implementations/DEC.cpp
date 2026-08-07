@@ -7,7 +7,7 @@ Created on: 11/06/2026
 
 uint8_t		CPU::DEC_R8(uint8_t &reg)
 {
-	unsetFlag(Flag::N);
+	setFlag(Flag::N);
 	setFlag(Flag::H, checkBorrow(reg, 1, 3));
 	reg--;
 	setFlag(Flag::Z, (reg == 0x00));

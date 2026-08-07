@@ -7,6 +7,7 @@ Created on: 28/04/2026
 #include "CPU/enums/OpCodes.hpp"
 
 #include <iostream>
+#include <iomanip>
 
 CPU::CPU(MemoryBus &bus): _bus(bus)
 {
@@ -27,10 +28,11 @@ bool	CPU::cycle()
 
 	uint16_t	pcState = PC.getValue();
 	Instruction	currentInstruction = getInstruction();
-	std::cout << std::hex << pcState << " -> ";
+
 
 	uint8_t	result = executeInstruction(currentInstruction);
 
+	std::cout << std::hex << pcState << " -> ";
 	logInstructionData();
 
 	if (result == 0)
@@ -183,6 +185,36 @@ void	CPU::unsetFlag(CPU::Flag flag)
 bool	CPU::checkFlag(CPU::Flag flag)
 {
 	return (AF.reg8b.lo & (1 << (uint8_t)flag));
+}
+
+void	CPU::printflags()
+{
+	std::cout	<< "z: " << static_cast<int>(checkFlag(Flag::Z))
+				<< " - n: " << static_cast<int>(checkFlag(Flag::N))
+				<< " - h: " << static_cast<int>(checkFlag(Flag::H))
+				<< " - c: " << static_cast<int>(checkFlag(Flag::C))
+				<< std::endl;
+}
+
+static void	printRegister(Register &reg, const std::string &name, bool single)
+{
+	std::cout << name << ": (" << std::setw(4) << std::setfill('0') << std::hex << reg.getValue() << ")\t";
+	if (!single)
+	{
+		std::cout << name[0] << ": (" << std::setw(2) << std::setfill('0') << std::hex << static_cast<uint16_t>(reg.getHi()) << ")\t";
+		std::cout << name[1] << ": (" << std::setw(2) << std::setfill('0') << std::hex << static_cast<uint16_t>(reg.getLo()) << ")";
+	}
+	std::cout << std::endl;
+}
+
+void	CPU::printRegisters()
+{
+	printRegister(AF, "AF", false);
+	printRegister(BC, "BC", false);
+	printRegister(DE, "DE", false);
+	printRegister(HL, "HL", false);
+	printRegister(SP, "SP", true);
+	printRegister(PC, "PC", true);
 }
 
 uint8_t		CPU::notImplemented()

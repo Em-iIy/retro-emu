@@ -23,6 +23,7 @@ add_executable(gb-EM-u
 	CPU/Implementations/PUSH.cpp
 	CPU/Implementations/RET.cpp
 	CPU/Implementations/ROTATE.cpp
+	CPU/Implementations/RST.cpp
 	CPU/Implementations/SHIFT.cpp
 	CPU/Implementations/SUB.cpp
 	CPU/Implementations/SUBC.cpp

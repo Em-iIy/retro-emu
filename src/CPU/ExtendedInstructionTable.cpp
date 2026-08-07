@@ -5,21 +5,21 @@ Created on: 04/07/2026
 
 #include "CPU/CPU.hpp"
 
-#define REG_A CPU::AF.reg8b.hi
-#define REG_F CPU::AF.reg8b.lo
-#define REG_B CPU::BC.reg8b.hi
-#define REG_C CPU::BC.reg8b.lo
-#define REG_D CPU::DE.reg8b.hi
-#define REG_E CPU::DE.reg8b.lo
-#define REG_H CPU::HL.reg8b.hi
-#define REG_L CPU::HL.reg8b.lo
+#define REG_A std::ref(CPU::AF.reg8b.hi)
+#define REG_F std::ref(CPU::AF.reg8b.lo)
+#define REG_B std::ref(CPU::BC.reg8b.hi)
+#define REG_C std::ref(CPU::BC.reg8b.lo)
+#define REG_D std::ref(CPU::DE.reg8b.hi)
+#define REG_E std::ref(CPU::DE.reg8b.lo)
+#define REG_H std::ref(CPU::HL.reg8b.hi)
+#define REG_L std::ref(CPU::HL.reg8b.lo)
 
-#define REG_AF CPU::AF.reg16b
-#define REG_BC CPU::BC.reg16b
-#define REG_DE CPU::DE.reg16b
-#define REG_HL CPU::HL.reg16b
-#define REG_SP CPU::SP.reg16b
-#define REG_PC CPU::PC.reg16b
+#define REG_AF std::ref(CPU::AF.reg16b)
+#define REG_BC std::ref(CPU::BC.reg16b)
+#define REG_DE std::ref(CPU::DE.reg16b)
+#define REG_HL std::ref(CPU::HL.reg16b)
+#define REG_SP std::ref(CPU::SP.reg16b)
+#define REG_PC std::ref(CPU::PC.reg16b)
 
 
 static void	setCallback(CPU::InstructionTable &table, OpCodesExt code, CPU::InstructionCallback cb)
