@@ -16,7 +16,7 @@ Created on: 30/03/2026
 #include <cerrno>
 #include <cassert>
 
-#include <iostream>
+#include <utils/printTypes.hpp>
 
 WRAM::WRAM(): AMemoryAccessor(0xC000, 0xDFFF)
 {
@@ -32,10 +32,10 @@ uint8_t					WRAM::readByte(uint16_t address)
 	uint16_t	wramAddress = address - WRAM_START_ADDRESS;
 	if (wramAddress < WRAM_BANK_SIZE)
 	{
-		std::cout << "Bank0 address " << wramAddress << " " << std::hex << (uint16_t)(_banks.front().readByte(wramAddress)) << std::endl;
+		std::cout << "Bank0 address " << wramAddress << " " << X8bit{_banks.front().readByte(wramAddress)} << std::endl;
 		return (_banks.front().readByte(wramAddress));
 	}
-	std::cout << "Bank" << _currentBank << " address " << wramAddress - WRAM_BANK_SIZE << " " << std::hex << (uint16_t)(_getCurrentBank().readByte(wramAddress - WRAM_BANK_SIZE)) << std::endl;
+	std::cout << "Bank" << _currentBank << " address " << wramAddress - WRAM_BANK_SIZE << " " << X8bit{_getCurrentBank().readByte(wramAddress - WRAM_BANK_SIZE)} << std::endl;
 	return (_getCurrentBank().readByte(wramAddress - WRAM_BANK_SIZE));
 }
 

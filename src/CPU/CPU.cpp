@@ -6,8 +6,7 @@ Created on: 28/04/2026
 #include "CPU/CPU.hpp"
 #include "CPU/enums/OpCodes.hpp"
 
-#include <iostream>
-#include <iomanip>
+#include "utils/printTypes.hpp"
 
 CPU::CPU(MemoryBus &bus): _bus(bus)
 {
@@ -32,7 +31,7 @@ bool	CPU::cycle()
 
 	uint8_t	result = executeInstruction(currentInstruction);
 
-	std::cout << std::hex << pcState << " -> ";
+	std::cout << X16bit{pcState} << " -> ";
 	logInstructionData();
 
 	if (result == 0)
@@ -160,7 +159,7 @@ void	CPU::logInstructionData()
 	OpCodes code = static_cast<OpCodes>(currentInstructionData.front());
 	std::cout << code << "\t";
 	for (uint8_t i = 1; i < currentInstructionData.size(); i++)
-		std::cout << "(" << std::hex << currentInstructionData.at(i) << ") ";
+		std::cout << "(" << X16bit{currentInstructionData.at(i)} << ") ";
 	std::cout << std::endl;
 }
 
@@ -198,11 +197,11 @@ void	CPU::printflags()
 
 static void	printRegister(Register &reg, const std::string &name, bool single)
 {
-	std::cout << name << ": (" << std::setw(4) << std::setfill('0') << std::hex << reg.getValue() << ")\t";
+	std::cout << name << ": (" << X16bit{reg.getValue()} << ")\t";
 	if (!single)
 	{
-		std::cout << name[0] << ": (" << std::setw(2) << std::setfill('0') << std::hex << static_cast<uint16_t>(reg.getHi()) << ")\t";
-		std::cout << name[1] << ": (" << std::setw(2) << std::setfill('0') << std::hex << static_cast<uint16_t>(reg.getLo()) << ")";
+		std::cout << name[0] << ": (" << std::setw(2) << std::setfill('0') << X8bit{reg.getHi()} << ")\t";
+		std::cout << name[1] << ": (" << std::setw(2) << std::setfill('0') << X8bit{reg.getLo()} << ")";
 	}
 	std::cout << std::endl;
 }

@@ -7,6 +7,7 @@ Created on: 28/04/2026
 #include "WRAM.hpp"
 #include "CPU/CPU.hpp"
 
+#include <utils/printTypes.hpp>
 
 #define ROM_START 0x0000
 #define ROM_END 0x7FFF
@@ -97,7 +98,7 @@ uint8_t	MemoryBus::readByte(uint16_t address)
 
 void	MemoryBus::writeByte(uint16_t address, uint8_t value)
 {
-	std::cout << "BUS: write: " << std::hex << static_cast<uint16_t>(value) << " to " << std::hex << address << std::endl;
+	std::cout << "BUS: write: " << X8bit{value} << " to " << X16bit{address} << std::endl;
 	if (address >= ROM_START && address <= ROM_END)
 	{
 		_rom->writeByte(address, value);

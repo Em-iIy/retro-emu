@@ -5,7 +5,7 @@ Created on: 15/04/2026
 
 #include "Cartridge/CartridgeHeader.hpp"
 
-#include <iostream>
+#include "utils/printTypes.hpp"
 
 void		CartridgeHeader::fill(AMemoryAccessor &data)
 {
@@ -52,8 +52,8 @@ uint16_t	CartridgeHeader::getRomBankCount()
 std::ostream &operator<<(std::ostream &o, const CartridgeHeader &header)
 {
 	o << "Cart type:\t\t" << header.cartridgeType << std::endl;
-	o << "ROM size:\t\t" << std::hex << (uint16_t)(header.romSize) << std::endl;
-	o << "RAM size:\t\t" << std::hex << (uint16_t)(header.ramSize) << std::endl;
+	o << "ROM size:\t\t" << X8bit{header.romSize} << std::endl;
+	o << "RAM size:\t\t" << X8bit{header.ramSize} << std::endl;
 	o << "Title:\t\t\t"  << header.title << std::endl;
 	o << "Manufacturer code:\t"  << header.manufacturerCode << std::endl;
 	return (o);
