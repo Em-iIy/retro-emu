@@ -19,6 +19,19 @@ void	GameBoy::loadCartridge(std::shared_ptr<Cartridge> cartridge)
 {
 	_cartridge = cartridge;
 	_bus.loadCartridge(cartridge);
+
+
+	_cpu.setState({.A = 0x1, .B = 0xF});
+	if (_cpu.checkState({.A = 0x1, .B = 0xF}) == false)
+	{
+		std::cout << "WTFFFF" << std::endl;
+		return;
+	}
+	else
+	{
+		std::cout << "passed" << std::endl;
+	}
+
 	do
 	{
 		std::string input;

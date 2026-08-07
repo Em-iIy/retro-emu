@@ -32,6 +32,9 @@ add_executable(gb-EM-u
 	Cartridge/Cartridge.cpp
 	Cartridge/CartridgeHeader.cpp
 	Cartridge/ROM.cpp
+
+	Tests/State.cpp
+
 	utils/readFile.cpp
 	AMemoryAccessor.cpp
 	MemoryBus.cpp

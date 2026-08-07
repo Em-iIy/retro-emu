@@ -10,6 +10,8 @@ Created on: 09/04/2026
 #include "Instruction.hpp"
 #include "MemoryBus.hpp"
 
+#include "Tests/State.hpp"
+
 #include <functional>
 #include <array>
 
@@ -42,6 +44,9 @@ class CPU {
 		bool		cycle();
 
 		void		setIME(bool val);
+
+		void		setState(const State &state);
+		bool		checkState(const State &state);
 
 		void		printflags();
 		void		printRegisters();
