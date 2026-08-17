@@ -19,7 +19,9 @@ uint8_t	CPU::JUMP_R16(uint16_t &reg)
 
 uint8_t		CPU::JUMP_RELATIVE_IM8()
 {
-	PC.setValue(PC.getValue() + static_cast<int8_t>(fetchImmediateByte()));
+
+	uint8_t	data = fetchImmediateByte();
+	PC.setValue(PC.getValue() + static_cast<int8_t>(data));
 	return (1);
 }
 
