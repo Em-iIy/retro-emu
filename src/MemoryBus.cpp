@@ -5,6 +5,7 @@ Created on: 28/04/2026
 
 #include "MemoryBus.hpp"
 #include "WRAM.hpp"
+#include "HRAM.hpp"
 #include "CPU/CPU.hpp"
 
 #include <utils/printTypes.hpp>
@@ -42,7 +43,7 @@ MemoryBus::MemoryBus(): AMemoryAccessor(0x0000, 0xFFFF), _rom(nullptr), _wram(nu
 	_cpu = nullptr;
 }
 
-MemoryBus::MemoryBus(CPU *cpu, WRAM *wram): AMemoryAccessor(0x0000, 0xFFFF), _rom(nullptr), _wram(wram), _cpu(cpu)
+MemoryBus::MemoryBus(CPU *cpu, WRAM *wram, HRAM *hram): AMemoryAccessor(0x0000, 0xFFFF), _rom(nullptr), _wram(wram), _hram(hram), _cpu(cpu)
 {
 }
 
@@ -82,7 +83,7 @@ uint8_t	MemoryBus::readByte(uint16_t address)
 	}
 	else if (address >= HRAM_START && address <= HRAM_END)
 	{
-		std::cout << "HRAM not implemented" << std::endl;
+		return (_hram->readByte(address));
 	}
 	else if (address >= IE_START && address <= IE_END)
 	{
@@ -129,7 +130,7 @@ void	MemoryBus::writeByte(uint16_t address, uint8_t value)
 	}
 	else if (address >= HRAM_START && address <= HRAM_END)
 	{
-		std::cout << "HRAM not implemented" << std::endl;
+		_hram->writeByte(address, value);
 	}
 	else if (address >= IE_START && address <= IE_END)
 	{

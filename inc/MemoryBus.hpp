@@ -11,11 +11,12 @@ Created on: 13/04/2026
 
 class CPU;
 class WRAM;
+class HRAM;
 
 class MemoryBus: public AMemoryAccessor {
 	public:
 		MemoryBus();
-		MemoryBus(CPU *cpu, WRAM *wram);
+		MemoryBus(CPU *cpu, WRAM *wram, HRAM *hram);
 		~MemoryBus();
 	
 		uint8_t	readByte(uint16_t address);
@@ -28,5 +29,6 @@ class MemoryBus: public AMemoryAccessor {
 		// RAM	*_vram; // Video RAM
 		// RAM	*_eram; // External RAM
 		WRAM	*_wram; // Work RAM
+		HRAM	*_hram; // High RAM
 		CPU		*_cpu;
 };

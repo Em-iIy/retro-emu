@@ -2,10 +2,6 @@
 Created by: Emily (Em_iIy) Winnink
 Created on: 28/04/2026
 */
-/*
-Created by: Emily (Em_iIy) Winnink
-Created on: 30/03/2026
-*/
 
 #include "WRAM.hpp"
 #include "Bank.hpp"

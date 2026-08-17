@@ -9,6 +9,7 @@ Created on: 28/04/2026
 #include "Cartridge/Cartridge.hpp"
 #include "MemoryBus.hpp"
 #include "WRAM.hpp"
+#include "HRAM.hpp"
 
 #include <memory>
 
@@ -25,5 +26,5 @@ class GameBoy
 		MemoryBus					_bus;
 		std::shared_ptr<Cartridge>	_cartridge = nullptr;
 		WRAM						_wram;
-		
+		HRAM						_hram;
 };

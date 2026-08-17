@@ -38,6 +38,7 @@ add_executable(gb-EM-u
 	utils/readFile.cpp
 	AMemoryAccessor.cpp
 	MemoryBus.cpp
+	HRAM.cpp
 	WRAM.cpp
 	GameBoy.cpp
 )
