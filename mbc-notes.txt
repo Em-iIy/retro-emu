@@ -1,0 +1,62 @@
+MBC - Memory Bank Controllers
+
+MBC1 {
+	2MB ROM
+	32KB RAM
+
+	Memory range {
+		0000-3FFF = ROM bank X0
+		4000-7FFF = ROM bank 01-7F
+
+		A000-BFFF = RAM bank 00-03 if included
+	}
+
+	Registers {
+		RAM Enable {
+			Disabled by default
+			range: 0000-1FFF
+			access {
+				enable if value written is XXXA
+				disable if not
+			}
+		}
+		ROM Bank Number {
+			1 by default
+			range: 2000-3FFF
+			access {
+				set register to lower 5 bits of value written
+			}
+		}
+	}
+}
+
+MBC2 {
+	256KB ROM
+	512x4 bits RAM
+
+	Memory range {
+		0000-3FFF = ROM bank 0
+		4000-7FFF = ROM bank 01-0F
+
+		A000-A1FF = Built-in RAM
+		A200-BFFF = Built-in RAM echoes ???
+	}
+
+	Registers {
+		RAM Enable {
+			Disabled by default
+			range: 0000-3FFF
+			if bit 8 is 0 (0x100) {
+				enable if value written is XXXA
+				disable if not
+			}
+		}
+		ROM Bank Number {
+			1 by default
+			range: 0000-3FFF
+			if bit 8 is 1 (0x100) {
+				set register to lower 4 bits of value written
+			}
+		}
+	}
+}
