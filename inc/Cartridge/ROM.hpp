@@ -25,16 +25,17 @@ class ROM: public AMemoryAccessor {
 		void					writeByte(uint16_t address, uint8_t value);
 
 		void					initBanks(uint16_t count);
+		void					switchBank(uint16_t number);
 		void					fill(std::vector<uint8_t> &data);
 
 	private:
 
-		ROMBank					&_getCurrentBank();
+		ROMBank					&getCurrentBank();
 
-		std::vector<ROMBank>	_banks;
+		std::vector<ROMBank>	banks;
 
-		uint16_t				_currentBank = 0x01;
-		uint16_t				_bankCount = 2;
+		uint16_t				currentBank = 0x01;
+		uint16_t				bankCount = 2;
 
 		
 };

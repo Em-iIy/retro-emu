@@ -16,9 +16,9 @@ class Instruction
 		Instruction(OpCodes code);
 		~Instruction();
 
-		bool	checkExtended();
-		void	setExtension(OpCodesExt extension);
+		bool		checkExtended();
+		void		setExtension(OpCodesExt extension);
 
-		OpCodes	opCode;
+		OpCodes		opCode;
 		OpCodesExt	ext;
 };

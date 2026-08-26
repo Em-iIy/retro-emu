@@ -22,6 +22,5 @@ class HRAM: public AMemoryAccessor {
 		void					writeByte(uint16_t address, uint8_t value);
 
 	private:
-
 		HRAMBank	bank;
 };

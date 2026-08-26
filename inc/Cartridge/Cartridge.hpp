@@ -7,8 +7,10 @@ Created on: 30/03/2026
 
 #include "ROM.hpp"
 #include "CartridgeHeader.hpp"
+#include "MBC/MBC.hpp"
 
 #include <vector>
+#include <memory>
 
 class Cartridge: public AMemoryAccessor {
 	public:
@@ -20,11 +22,15 @@ class Cartridge: public AMemoryAccessor {
 		void					writeByte(uint16_t address, uint8_t value);
 
 		ROM						&getRom();
+		std::shared_ptr<MBC>	getMBC();
+
 
 	private:
 		void					load(const std::string &cartFileName);
+		void					initMBC();
 
-		CartridgeHeader			_header;
-		ROM						_rom;
-		std::vector<uint8_t>	_data;
+		CartridgeHeader			header;
+		std::shared_ptr<MBC>	mbc;
+		std::vector<uint8_t>	data;
+		
 };

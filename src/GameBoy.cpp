@@ -9,7 +9,7 @@ Created on: 28/04/2026
 
 #define DEBUG false
 
-GameBoy::GameBoy(): _cpu(_bus), _bus(&_cpu, &_wram, &_hram)
+GameBoy::GameBoy(): cpu(bus), bus(&cpu, &wram, &hram)
 {
 }
 
@@ -17,13 +17,13 @@ GameBoy::~GameBoy()
 {
 }
 
-void	GameBoy::loadCartridge(std::shared_ptr<Cartridge> cartridge)
+void	GameBoy::loadCartridge(std::shared_ptr<Cartridge> inCartridge)
 {
-	_cartridge = cartridge;
-	_bus.loadCartridge(cartridge);
+	cartridge = inCartridge;
+	bus.loadMBC(cartridge->getMBC());
 
-	// _cpu.setState({.A = 0x1, .B = 0xF});
-	// if (_cpu.checkState({.A = 0x1, .B = 0xF}) == false)
+	// cpu.setState({.A = 0x1, .B = 0xF});
+	// if (cpu.checkState({.A = 0x1, .B = 0xF}) == false)
 	// {
 	// 	std::cout << "WTFFFF" << std::endl;
 	// 	return;
@@ -38,8 +38,8 @@ void	GameBoy::loadCartridge(std::shared_ptr<Cartridge> cartridge)
 		std::string input;
 		if (!DEBUG)
 		{
-			_cpu.printflags();
-			_cpu.printRegisters();
+			cpu.printflags();
+			cpu.printRegisters();
 			std::cout << std::endl;
 			continue ;
 		}
@@ -47,8 +47,8 @@ void	GameBoy::loadCartridge(std::shared_ptr<Cartridge> cartridge)
 
 		if (input == "s")
 		{
-			_cpu.printflags();
-			_cpu.printRegisters();
+			cpu.printflags();
+			cpu.printRegisters();
 			std::cout << std::endl;
 		}
 		else if (input == "help")
@@ -58,5 +58,5 @@ void	GameBoy::loadCartridge(std::shared_ptr<Cartridge> cartridge)
 			std::cout << "`help` = this message" << std::endl;
 		}
 	}
-	while (_cpu.cycle());
+	while (cpu.cycle());
 }

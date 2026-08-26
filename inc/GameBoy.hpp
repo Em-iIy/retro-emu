@@ -19,12 +19,12 @@ class GameBoy
 		GameBoy();
 		~GameBoy();
 
-		void						loadCartridge(std::shared_ptr<Cartridge> _cartridge);
+		void						loadCartridge(std::shared_ptr<Cartridge> inCartridge);
 
 	private:
-		CPU							_cpu;
-		MemoryBus					_bus;
-		std::shared_ptr<Cartridge>	_cartridge = nullptr;
-		WRAM						_wram;
-		HRAM						_hram;
+		CPU							cpu;
+		MemoryBus					bus;
+		std::shared_ptr<Cartridge>	cartridge = nullptr;
+		WRAM						wram;
+		HRAM						hram;
 };

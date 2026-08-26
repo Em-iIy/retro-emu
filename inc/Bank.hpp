@@ -12,9 +12,9 @@ Created on: 16/04/2026
 #include <cassert>
 
 template<std::size_t n>
-class Bank: public AMemoryAccessor {
+class Bank {
 	public:
-		Bank(): AMemoryAccessor(0x0, n) {};
+		Bank() {};
 		~Bank() {};
 
 		uint8_t					readByte(uint16_t address)

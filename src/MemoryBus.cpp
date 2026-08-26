@@ -38,12 +38,12 @@ Created on: 28/04/2026
 #define IE_END 0xFFFF
 
 
-MemoryBus::MemoryBus(): AMemoryAccessor(0x0000, 0xFFFF), _rom(nullptr), _wram(nullptr), _cpu(nullptr)
+MemoryBus::MemoryBus(): AMemoryAccessor(0x0000, 0xFFFF), wram(nullptr), cpu(nullptr)
 {
-	_cpu = nullptr;
+	cpu = nullptr;
 }
 
-MemoryBus::MemoryBus(CPU *cpu, WRAM *wram, HRAM *hram): AMemoryAccessor(0x0000, 0xFFFF), _rom(nullptr), _wram(wram), _hram(hram), _cpu(cpu)
+MemoryBus::MemoryBus(CPU *inCpu, WRAM *inWram, HRAM *inHram): AMemoryAccessor(0x0000, 0xFFFF), wram(inWram), hram(inHram), cpu(inCpu)
 {
 }
 
@@ -55,7 +55,8 @@ uint8_t	MemoryBus::readByte(uint16_t address)
 {
 	if (address >= ROM_START && address <= ROM_END)
 	{
-		return (_rom->readByte(address));
+		// return (_rom->readByte(address));
+		return (mbc->readROM(address));
 	}
 	else if (address >= VRAM_START && address <= VRAM_END)
 	{
@@ -63,11 +64,12 @@ uint8_t	MemoryBus::readByte(uint16_t address)
 	}
 	else if (address >= EXT_RAM_START && address <= EXT_RAM_END)
 	{
-		std::cout << "external ram not implemented" << std::endl;
+		return (mbc->readRAM(address));
+		// std::cout << "external ram not implemented" << std::endl;
 	}
 	else if (address >= WRAM_START && address <= WRAM_END)
 	{
-		return (_wram->readByte(address));
+		return (wram->readByte(address));
 	}
 	else if (address >= ECHO_RAM_START && address <= ECHO_RAM_END)
 	{
@@ -83,7 +85,7 @@ uint8_t	MemoryBus::readByte(uint16_t address)
 	}
 	else if (address >= HRAM_START && address <= HRAM_END)
 	{
-		return (_hram->readByte(address));
+		return (hram->readByte(address));
 	}
 	else if (address >= IE_START && address <= IE_END)
 	{
@@ -102,7 +104,8 @@ void	MemoryBus::writeByte(uint16_t address, uint8_t value)
 	std::cout << "BUS: write: " << X8bit{value} << " to " << X16bit{address} << std::endl;
 	if (address >= ROM_START && address <= ROM_END)
 	{
-		_rom->writeByte(address, value);
+		mbc->writeROM(address, value);
+		// _rom->writeByte(address, value);
 	}
 	else if (address >= VRAM_START && address <= VRAM_END)
 	{
@@ -110,11 +113,12 @@ void	MemoryBus::writeByte(uint16_t address, uint8_t value)
 	}
 	else if (address >= EXT_RAM_START && address <= EXT_RAM_END)
 	{
-		std::cout << "external ram not implemented" << std::endl;
+		mbc->writeRAM(address, value);
+		// std::cout << "external ram not implemented" << std::endl;
 	}
 	else if (address >= WRAM_START && address <= WRAM_END)
 	{
-		_wram->writeByte(address, value);
+		wram->writeByte(address, value);
 	}
 	else if (address >= ECHO_RAM_START && address <= ECHO_RAM_END)
 	{
@@ -130,11 +134,11 @@ void	MemoryBus::writeByte(uint16_t address, uint8_t value)
 	}
 	else if (address >= HRAM_START && address <= HRAM_END)
 	{
-		_hram->writeByte(address, value);
+		hram->writeByte(address, value);
 	}
 	else if (address >= IE_START && address <= IE_END)
 	{
-		_cpu->setIME(value);
+		cpu->setIME(value);
 	}
 	else
 	{
@@ -142,7 +146,7 @@ void	MemoryBus::writeByte(uint16_t address, uint8_t value)
 	}
 }
 
-void	MemoryBus::loadCartridge(std::shared_ptr<Cartridge> cartridge)
+void	MemoryBus::loadMBC(std::shared_ptr<MBC> inMbc)
 {
-	_rom = &cartridge->getRom();
+	mbc = inMbc;
 }

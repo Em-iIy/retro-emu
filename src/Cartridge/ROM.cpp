@@ -16,7 +16,7 @@ Created on: 30/03/2026
 
 ROM::ROM(): AMemoryAccessor(0x0000, 0x7FFF)
 {
-	_banks.resize(_bankCount);
+	banks.resize(bankCount);
 }
 
 ROM::~ROM()
@@ -26,36 +26,45 @@ ROM::~ROM()
 uint8_t					ROM::readByte(uint16_t address)
 {
 	uint16_t	romAddress = address - ROM_START_ADDRESS;
+
+	// Check whether taking rom bank 00 or 01-XX
 	if (romAddress < ROM_BANK_SIZE)
-		return (_banks.front().readByte(romAddress));
-	return (_getCurrentBank().readByte(romAddress - ROM_BANK_SIZE));
+		return (banks.front().readByte(romAddress));
+	return (getCurrentBank().readByte(romAddress - ROM_BANK_SIZE));
 }
 
 void					ROM::writeByte(uint16_t address, uint8_t value)
 {
+	std::cout << "ROM::writeByte() Soon deprecated" << std::endl;
 	uint16_t	romAddress = address - ROM_START_ADDRESS;
 	if (romAddress >= 0x2000 && romAddress <= 0x3FFF)
 	{
-		_currentBank = value & 0b00011111;
-		std::cout << "Selected ROM bank: " << _currentBank << std::endl;
+		currentBank = value & 0b00011111;
+		std::cout << "Selected ROM bank: " << currentBank << std::endl;
 	}
 }
 
 void					ROM::initBanks(uint16_t count)
 {
 	std::cout << "initializing " << count << " ROM banks" << std::endl;
-	_bankCount = count;
-	_banks.resize(count);
+	bankCount = count;
+	banks.resize(count);
+}
+
+void					ROM::switchBank(uint16_t number)
+{
+	assert(number < bankCount);
+	currentBank = number;
 }
 
 void					ROM::fill(std::vector<uint8_t> &data)
 {
-	for (uint32_t i = 0; i < _banks.size(); i++)
-		_banks[i].load(data, i * ROM_BANK_SIZE, (i + 1) * ROM_BANK_SIZE);
+	for (uint32_t i = 0; i < banks.size(); i++)
+		banks[i].load(data, i * ROM_BANK_SIZE, (i + 1) * ROM_BANK_SIZE);
 }
 
-ROMBank					&ROM::_getCurrentBank()
+ROMBank					&ROM::getCurrentBank()
 {
-	assert(_currentBank < _bankCount);
-	return (_banks[_currentBank]);
+	assert(currentBank < bankCount);
+	return (banks[currentBank]);
 }

@@ -27,6 +27,13 @@ MBC1 {
 				set register to lower 5 bits of value written
 			}
 		}
+		RAM Bank Number {
+			0 by default
+			range: 4000-5FFF
+			access {
+				set register to lower 2 bits of value written
+			}
+		}
 	}
 }
 
@@ -55,6 +62,49 @@ MBC2 {
 			1 by default
 			range: 0000-3FFF
 			if bit 8 is 1 (0x100) {
+				set register to lower 4 bits of value written
+			}
+		}
+	}
+}
+
+MBC5 {
+	8MB ROM
+
+	Memory range {
+		0000-3FFF = ROM bank 00
+		4000-7FFF = ROM bank 01-1FF
+
+		A000-BFFF = RAM bank 00-0F if included
+	}
+
+	Registers {
+		RAM Enable {
+			Disabled by default
+			range: 0000-1FFF
+			access {
+				enable if value written is XXXA
+				disable if not
+			}
+		}
+		ROM Bank Number {
+			1 by default
+			range: 2000-2FFF
+			access {
+				set register to lower 8 bits of value written
+			}
+		}
+		ROM Bank Number {
+			0 by default
+			range: 3000-3FFF
+			access {
+				set register to lower 1 bits of value written
+			}
+		}
+		RAM Bank Number {
+			0 by default
+			range: 4000-5FFF
+			access {
 				set register to lower 4 bits of value written
 			}
 		}
