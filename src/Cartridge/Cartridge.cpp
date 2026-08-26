@@ -11,7 +11,7 @@ Created on: 30/03/2026
 
 #include <iostream>
 
-Cartridge::Cartridge(const std::string &cartFileName): AMemoryAccessor(0x0, 0xFFFF)
+Cartridge::Cartridge(const std::string &cartFileName)
 {
 	load(cartFileName);
 }

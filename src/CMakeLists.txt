@@ -41,7 +41,6 @@ add_executable(gb-EM-u
 	Tests/State.cpp
 
 	utils/readFile.cpp
-	AMemoryAccessor.cpp
 	MemoryBus.cpp
 	HRAM.cpp
 	WRAM.cpp

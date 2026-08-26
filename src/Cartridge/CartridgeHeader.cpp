@@ -4,10 +4,11 @@ Created on: 15/04/2026
 */
 
 #include "Cartridge/CartridgeHeader.hpp"
+#include "Cartridge/Cartridge.hpp"
 
 #include "utils/printTypes.hpp"
 
-void		CartridgeHeader::fill(AMemoryAccessor &data)
+void		CartridgeHeader::fill(Cartridge &data)
 {
 	cartridgeType = static_cast<CartridgeType>(data.readByte(0x0147));
 	romSize = data.readByte(0x0148);

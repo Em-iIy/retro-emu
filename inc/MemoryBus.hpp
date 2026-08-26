@@ -14,7 +14,7 @@ class CPU;
 class WRAM;
 class HRAM;
 
-class MemoryBus: public AMemoryAccessor {
+class MemoryBus {
 	public:
 		MemoryBus();
 		MemoryBus(CPU *inCpu, WRAM *inWram, HRAM *inHram);

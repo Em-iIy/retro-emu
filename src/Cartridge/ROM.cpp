@@ -14,7 +14,7 @@ Created on: 30/03/2026
 
 #include <iostream>
 
-ROM::ROM(): AMemoryAccessor(0x0000, 0x7FFF)
+ROM::ROM()
 {
 	banks.resize(bankCount);
 }

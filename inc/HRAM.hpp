@@ -5,7 +5,6 @@ Created on: 11/08/2026
 
 #pragma once
 
-#include "AMemoryAccessor.hpp"
 #include "Bank.hpp"
 
 #define HRAM_BANK_SIZE 0x007E
@@ -13,7 +12,7 @@ Created on: 11/08/2026
 
 using HRAMBank = Bank<HRAM_BANK_SIZE>;
 
-class HRAM: public AMemoryAccessor {
+class HRAM {
 	public:
 		HRAM();
 		~HRAM();

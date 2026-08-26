@@ -14,7 +14,7 @@ Created on: 28/04/2026
 
 #include <utils/printTypes.hpp>
 
-WRAM::WRAM(): AMemoryAccessor(0xC000, 0xDFFF)
+WRAM::WRAM()
 {
 	_banks.resize(_bankCount);
 }

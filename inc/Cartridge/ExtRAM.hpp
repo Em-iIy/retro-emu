@@ -5,7 +5,6 @@ Created on: 18/08/2026
 
 #pragma once
 
-#include "AMemoryAccessor.hpp"
 #include "Bank.hpp"
 
 #include <vector>
@@ -15,7 +14,7 @@ Created on: 18/08/2026
 
 using ExtRAMBank = Bank<EXT_RAM_BANK_SIZE>;
 
-class ExtRAM: public AMemoryAccessor {
+class ExtRAM {
 	public:
 		ExtRAM();
 		~ExtRAM();

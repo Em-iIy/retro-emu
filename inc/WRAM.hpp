@@ -5,7 +5,6 @@ Created on: 28/04/2026
 
 #pragma once
 
-#include "AMemoryAccessor.hpp"
 #include "Bank.hpp"
 
 #include <string>
@@ -16,7 +15,7 @@ Created on: 28/04/2026
 
 using WRAMBank = Bank<WRAM_BANK_SIZE>;
 
-class WRAM: public AMemoryAccessor {
+class WRAM {
 	public:
 		WRAM();
 		~WRAM();

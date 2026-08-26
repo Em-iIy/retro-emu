@@ -5,7 +5,6 @@ Created on: 30/03/2026
 
 #pragma once
 
-#include "AMemoryAccessor.hpp"
 #include "Bank.hpp"
 
 #include <string>
@@ -16,7 +15,7 @@ Created on: 30/03/2026
 
 using ROMBank = Bank<ROM_BANK_SIZE>;
 
-class ROM: public AMemoryAccessor {
+class ROM {
 	public:
 		ROM();
 		~ROM();

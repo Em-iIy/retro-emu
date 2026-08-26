@@ -12,7 +12,7 @@ Created on: 30/03/2026
 #include <vector>
 #include <memory>
 
-class Cartridge: public AMemoryAccessor {
+class Cartridge {
 	public:
 		Cartridge(const std::string &cartFileName);
 		~Cartridge();

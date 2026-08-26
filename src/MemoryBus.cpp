@@ -38,12 +38,12 @@ Created on: 28/04/2026
 #define IE_END 0xFFFF
 
 
-MemoryBus::MemoryBus(): AMemoryAccessor(0x0000, 0xFFFF), wram(nullptr), cpu(nullptr)
+MemoryBus::MemoryBus(): wram(nullptr), cpu(nullptr)
 {
 	cpu = nullptr;
 }
 
-MemoryBus::MemoryBus(CPU *inCpu, WRAM *inWram, HRAM *inHram): AMemoryAccessor(0x0000, 0xFFFF), wram(inWram), hram(inHram), cpu(inCpu)
+MemoryBus::MemoryBus(CPU *inCpu, WRAM *inWram, HRAM *inHram): wram(inWram), hram(inHram), cpu(inCpu)
 {
 }
 

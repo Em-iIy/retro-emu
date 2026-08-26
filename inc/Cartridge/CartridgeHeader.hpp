@@ -5,13 +5,13 @@ Created on: 15/04/2026
 
 #pragma once
 
-#include "AMemoryAccessor.hpp"
 #include "enums/CartridgeType.hpp"
 
 #include <cstdint>
 #include <string>
 #include <vector>
 
+class Cartridge;
 
 /*
 	0x0100-0x0103	Entry point
@@ -24,7 +24,7 @@ Created on: 15/04/2026
 */
 class CartridgeHeader {
 	public:
-		void			fill(AMemoryAccessor &data);
+		void			fill(Cartridge &data);
 
 		uint16_t		getRomBankCount();
 		uint16_t		getRamBankCount();

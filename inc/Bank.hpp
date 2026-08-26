@@ -5,11 +5,10 @@ Created on: 16/04/2026
 
 #pragma once
 
-#include "AMemoryAccessor.hpp"
-
 #include <array>
 #include <vector>
 #include <cassert>
+#include <cstdint>
 
 template<std::size_t n>
 class Bank {

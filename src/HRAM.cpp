@@ -14,7 +14,7 @@ Created on: 11/08/2026
 
 #include <utils/printTypes.hpp>
 
-HRAM::HRAM(): AMemoryAccessor(HRAM_START_ADDRESS, HRAM_START_ADDRESS + HRAM_BANK_SIZE)
+HRAM::HRAM()
 {
 }
 

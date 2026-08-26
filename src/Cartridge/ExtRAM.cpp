@@ -7,7 +7,7 @@ Created on: 18/08/2026
 
 #include <iostream>
 
-ExtRAM::ExtRAM(): AMemoryAccessor(EXT_RAM_START_ADDRESS, EXT_RAM_START_ADDRESS + EXT_RAM_BANK_SIZE)
+ExtRAM::ExtRAM()
 {
 }
 
