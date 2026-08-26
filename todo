@@ -1,0 +1,14 @@
+- I/O
+- VRAM
+- PPU
+
+- instructions:
+	- remaining extended instructions
+	- interupt instructions
+
+- No MBC
+
+- Learn SDL2
+- Implement on project
+
+- Create more thorough tests for the instructions
