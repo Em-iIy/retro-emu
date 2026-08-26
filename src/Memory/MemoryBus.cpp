@@ -3,9 +3,9 @@ Created by: Emily (Em_iIy) Winnink
 Created on: 28/04/2026
 */
 
-#include "MemoryBus.hpp"
-#include "WRAM.hpp"
-#include "HRAM.hpp"
+#include "Memory/MemoryBus.hpp"
+#include "Memory/WRAM.hpp"
+#include "Memory/HRAM.hpp"
 #include "CPU/CPU.hpp"
 
 #include <utils/printTypes.hpp>

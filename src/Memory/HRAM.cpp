@@ -3,7 +3,7 @@ Created by: Emily (Em_iIy) Winnink
 Created on: 11/08/2026
 */
 
-#include "HRAM.hpp"
+#include "Memory/HRAM.hpp"
 #include "Bank.hpp"
 
 #include <fcntl.h>

@@ -3,7 +3,7 @@ Created by: Emily (Em_iIy) Winnink
 Created on: 28/04/2026
 */
 
-#include "WRAM.hpp"
+#include "Memory/WRAM.hpp"
 #include "Bank.hpp"
 
 #include <fcntl.h>

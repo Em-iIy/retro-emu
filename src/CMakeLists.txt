@@ -41,9 +41,9 @@ add_executable(gb-EM-u
 	Tests/State.cpp
 
 	utils/readFile.cpp
-	MemoryBus.cpp
-	HRAM.cpp
-	WRAM.cpp
+	Memory/MemoryBus.cpp
+	Memory/HRAM.cpp
+	Memory/WRAM.cpp
 	GameBoy.cpp
 )
 

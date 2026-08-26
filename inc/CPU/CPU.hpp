@@ -8,7 +8,7 @@ Created on: 09/04/2026
 #include "Register.hpp"
 #include "enums/RegisterName.hpp"
 #include "Instruction.hpp"
-#include "MemoryBus.hpp"
+#include "Memory/MemoryBus.hpp"
 
 #include "Tests/State.hpp"
 
